@@ -30,27 +30,24 @@ package inflearn.test;
 import java.util.*;
 import java.io.*;
 
-public class C01_09 {
+public class C01_09_04 {
 	
-	public String solution(String str) {
+	public int solution(String str) {
 		String ans = "";
 		
 		char[] c = str.toCharArray();
-		//방법1. replaceFirst("^0+(?!$)", "");
+		//방법4. 아스키 + Integer.parseInt()
 		for (char d : c) {
 			if(!(d>=65 && d <=122)) {
 				ans += d;
 			}
 		}
-		//Removing leading zero 
-		while(ans.charAt(0) == '0') {
-			ans = ans.replaceFirst("^0+(?!$)", "");
-		}
-		return ans;
+		
+		return Integer.parseInt(ans);
 	}
 
 	public static void main(String[] args) throws IOException {
-		C01_09 T = new C01_09();
+		C01_09_04 T = new C01_09_04();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str = br.readLine();
