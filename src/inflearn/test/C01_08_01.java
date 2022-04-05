@@ -28,25 +28,36 @@ package inflearn.test;
 import java.util.*;
 import java.io.*;
 
-public class C01_07 {
+public class C01_08_01 {
 	
 	public String solution(String str) {
-		String ans = "NO";
+		String ans = "";
 		str = str.toLowerCase();
 		
-		//121ms
-		//방법1. new StringBulder.reverse().toString();
-		String rev = new StringBuilder(str).reverse().toString().toLowerCase();
+		char[] c = str.toCharArray();
 		
-		if(rev.equals(str)) {
+		//109ms
+		//방법1. new StringBuilder(ans).reverse().toString();
+		for (char d : c) {
+			if(d >= 65 && d <= 122) {
+				ans += d;
+			}
+		}
+		
+		String rev = new StringBuilder(ans).reverse().toString();
+		if(rev.equals(ans)) {
 			ans = "YES";
 		}
+		else {
+			ans = "NO";
+		}
+		
 		
 		return ans;
 	}
 
 	public static void main(String[] args) throws IOException {
-		C01_07 T = new C01_07();
+		C01_08_01 T = new C01_08_01();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str = br.readLine();

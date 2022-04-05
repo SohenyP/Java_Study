@@ -3,7 +3,7 @@ package inflearn.test;
 import java.util.*;
 import java.io.*;
 
-public class C01_05 {
+public class C01_05_01 {
 
 	public String solution(String str) {
 		String ans = "";
@@ -50,7 +50,7 @@ public class C01_05 {
 
 	public static void main(String[] args) throws IOException {
 		//출력 객제 호출
-		C01_05 T = new C01_05();
+		C01_05_01 T = new C01_05_01();
 
 		//단어 입력받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

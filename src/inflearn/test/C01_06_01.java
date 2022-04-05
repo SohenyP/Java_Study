@@ -26,7 +26,7 @@ package inflearn.test;
 import java.util.*;
 import java.io.*;
 
-public class C01_06 {
+public class C01_06_01 {
 	
 	public String solution(String str) {
 		String ans = "";
@@ -46,7 +46,7 @@ public class C01_06 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		C01_06 T = new C01_06();
+		C01_06_01 T = new C01_06_01();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str = br.readLine();
