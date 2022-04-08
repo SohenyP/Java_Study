@@ -37,6 +37,7 @@ package inflearn.test;
 import java.util.*;
 import java.io.*;
 
+//방법1. 정답이나, 포인터를 활용해야함
 public class C01_26_01 {
 
 	public ArrayList<Integer> solution(int n1, int n2, int[] a, int[] b) {
