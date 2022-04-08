@@ -47,23 +47,22 @@ import java.util.*;
 
 public class C01_33_01 {
 	public ArrayList<Integer> solution(int n, int k, int[] arr) {
-		ArrayList<Integer> ans = new ArrayList<>();
-		Map<Integer, Integer> map = new HashMap<>();
-		for(int i = 0; i < k-1; i++) {
+		ArrayList<Integer> ans = new ArrayList<>(); //값 출력 배열
+		Map<Integer, Integer> map = new HashMap<>(); // key=종류, value=갯수
+		for(int i = 0; i < k-1; i++) { // 0~k-1-1까지 갯수 새서 배열 생성
 			map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
 		}
-		int lt = 0;
-		for(int rt = k-1; rt < n; rt++) {
-			map.put(arr[rt], map.getOrDefault(arr[rt], 0)+1);
-			ans.add(map.size());
-			map.put(arr[lt], map.get(arr[lt])-1);
-			if(map.get(arr[lt]) == 0) {
-				map.remove(arr[lt]);
+		int lt = 0; //왼쪽 포인터
+		for(int rt = k-1; rt < n; rt++) { //k-1부터 배열끝까지
+			map.put(arr[rt], map.getOrDefault(arr[rt], 0)+1); //배열 추가하되, 이미 있으면 +1 없으면 0+1
+			ans.add(map.size()); //k개 생성됐으므로 size체크해서 list추가
+			map.put(arr[lt], map.get(arr[lt])-1); //현재 lt위치 value에서 -1
+			if(map.get(arr[lt]) == 0) { //빼고나서 그게 0이라면
+				map.remove(arr[lt]); //배열lt 지워
 			}
-			lt++;
+			lt++; //다음 포인터로 이동
 		}
 		
-	
 		return ans;
 	}
 
@@ -77,12 +76,14 @@ public class C01_33_01 {
 		int k = Integer.parseInt(st.nextToken()); // 연속 수
 		
 		st = new StringTokenizer(br.readLine(), " ");
-		int[] arr = new int[k]; // 숫자배열
-		for(int i = 0; i < k; i++) {
+		int[] arr = new int[n]; // 숫자배열
+		for(int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		for(int result : T.solution(n, k, arr)) {
+			System.out.print(result + " "); // 값출력
+		}
 		
-		System.out.print(T.solution(n, k, arr)); // 값출력
 	}
 
 }
