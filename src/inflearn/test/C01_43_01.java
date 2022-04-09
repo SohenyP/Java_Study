@@ -66,23 +66,23 @@ class Person {
 public class C01_43_01 {
 	public int solution(int n, int m, int[] arr) {
 		int ans = 0;
-		Queue<Person> q = new LinkedList<>(); //q선언
-		for(int i = 0; i < arr.length; i++) {
+		Queue<Person> q = new LinkedList<>(); //Person클래스를 제너릭으로 갖는 q선언
+		for(int i = 0; i < arr.length; i++) { //Person타입으로 초기화해 순서, 위중함 담기
 			q.offer(new Person(i, arr[i]));
 		}
-		while(!q.isEmpty()) {
-			Person tmp = q.poll();
-			for(Person x : q) {
-				if(x.priority > tmp.priority) {
-					q.offer(tmp);
-					tmp = null;
-					break;
+		while(!q.isEmpty()) { //q가 빌때까지 돌려
+			Person tmp = q.poll(); //맨 처음 q 빼기
+			for(Person x : q) { //뺀 q제외 모두
+				if(x.priority > tmp.priority) { //뺀 q위중함 더 작으면
+					q.offer(tmp); //다시 뒤로 보내기
+					tmp = null; // null초기화
+					break; //다시 처음으로
 				}
 			}
-			if(tmp != null) {
-				ans++;
-				if(tmp.id == m) {
-					return ans;
+			if(tmp != null) { //계속 뺀q 위중함이 제일 크다면
+				ans++; //순서 담기(1부터 시작이므로!)
+				if(tmp.id == m) { //만약 그 순서가 해당 순서라면,
+					return ans; // ans 출력
 				}
 			}
 		}
