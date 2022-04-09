@@ -27,30 +27,28 @@ NO
  */
 
 package inflearn.test;
+
 //STACK(컵)으로 풀기!!! 
 import java.io.*;
 import java.util.*;
 
 public class C01_36_01 {
 	public String solution(String str) {
-		String ans = "YES"; //값 없음 -1이므로 기본값 설정
-		//Stack생성
-		Stack<Character> st = new Stack<>();
-		for(char c : str.toCharArray()) { //문자열화
-			if(c == '(') { //(면
-				st.push(c); //stack.push()
-			}
-			else { //)면
-				if(st.isEmpty()) { //비었는지 체크, 빌 수 없음!
+		String ans = "YES"; // 값 없음 -1이므로 기본값 설정
+		// Stack생성
+		Stack<Character> sta = new Stack<>();
+		for (char c : str.toCharArray()) { // 문자열화
+			if (c == '(') { // (면
+				sta.push(c); // stack.push()
+			} else { // )면
+				if (sta.isEmpty()) { // 비었는지 체크, 빌 수 없음!
 					return "NO"; // 따라서 no
 				}
-				else { //안비어있음
-					st.pop(); //(하나 빼기
-				}
+				sta.pop(); // (하나 빼기
 			}
 		}
-		if(!st.isEmpty()) { //마지막까지 안비어있다면
-			return "NO"; //no
+		if (!sta.isEmpty()) { // 마지막까지 안비어있다면
+			return "NO"; // no
 		}
 		return ans;
 	}
@@ -60,8 +58,7 @@ public class C01_36_01 {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str = br.readLine();
-		
+
 		System.out.println(T.solution(str));
 	}
-
 }
