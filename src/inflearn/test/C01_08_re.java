@@ -21,43 +21,35 @@ YES
 
 package inflearn.test;
 
-import java.util.*;
 import java.io.*;
 
-public class C01_08_01 {
+public class C01_08_re {
 	
 	public String solution(String str) {
-		String ans = "";
-		str = str.toLowerCase();
+		String ans = "YES";
 		
-		char[] c = str.toCharArray();
+		str = str.replaceAll("[^a-z]", ""); //모든 특문 제거
 		
-		//109ms
-		//방법1. new StringBuilder(ans).reverse().toString();
-		for (char d : c) {
-			if(d >= 65 && d <= 122) {
-				ans += d;
+		char[] arr = str.toCharArray();
+		
+		for(int i = 0; i < arr.length; i++) {
+			if(!(arr[i] == arr[arr.length-1-i])) {
+				return "NO";
 			}
-		}
-		
-		String rev = new StringBuilder(ans).reverse().toString();
-		if(rev.equals(ans)) {
-			ans = "YES";
-		}
-		else {
-			ans = "NO";
 		}
 		
 		
 		return ans;
 	}
-
+	
 	public static void main(String[] args) throws IOException {
-		C01_08_01 T = new C01_08_01();
+		C01_08_re t = new C01_08_re();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String str = br.readLine();
-		System.out.print(T.solution(str));
+		String str = br.readLine().toLowerCase();
+		
+		System.out.print(t.solution(str));
+		
 	}
-
+	
 }
