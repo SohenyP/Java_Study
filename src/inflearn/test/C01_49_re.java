@@ -6,7 +6,6 @@
 철수네 반에는 N명의 학생들이 있습니다.
 선생님은 반 학생들에게 반 번호를 정해 주기 위해 
 운동장에 반 학생들을 키가 가장 작은 학생부터 일렬로 키순으로 세웠습니다.
-
 제일 앞에 가장 작은 학생부터 반 번호를 1번부터 N번까지 부여합니다. 
 철수는 짝꿍보다 키가 큽니다.
 그런데 철수가 앞 번호를 받고 싶어 짝꿍과 자리를 바꿨습니다.
@@ -35,29 +34,27 @@
  */
 
 package inflearn.test;
-//깊은복사(for문, clone()) vs 얕은복사(복사 = 오리지날)
+
 import java.io.*;
 import java.util.*;
 
-public class C01_49_01 {
+public class C01_49_re {
 	public String solution(int n, int[] arr) {
 		String ans = "";
-		//int[] tmp = arr.clone() : 값을 복사하되, 개별값이 됨
-		//int[] tmp = arr : 값 변경시 arr, tmp 둘 다 변경됨
-		int[] tmp = arr.clone(); //arr하면 tmp변할 때 arr 변함
-		Arrays.sort(tmp);
+		int[] arr1 = arr.clone(); //대상.clone(); 깊은 복사가 일어나 복사값 정렬시 오리지날 변경x
+		//int[] arr1 = arr; 얕은 복사아기 때문에 arr1정렬시 arr도 정렬됨 즉, 주소값의 복사가 일어났기 때문
+		Arrays.sort(arr1);
 		
 		for(int i = 0; i < n; i++) {
-			System.out.println(arr[i] +" "+tmp[i]);
-			if(arr[i] != tmp[i]) {
-				ans += (i+1)+ " ";
+			if(arr[i] != arr1[i]) {
+				ans += (i+1) + " ";
 			}
 		}
 		return ans;
 	}
 
 	public static void main(String[] args) throws IOException {
-		C01_49_01 T = new C01_49_01();
+		C01_49_re T = new C01_49_re();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine()); // 캐시크기

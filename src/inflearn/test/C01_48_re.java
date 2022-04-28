@@ -1,7 +1,6 @@
 /*
 5. 중복 확인
 설명
-
 현수네 반에는 N명의 학생들이 있습니다.
 선생님은 반 학생들에게 1부터 10,000,000까지의 자연수 중에서 
 각자가 좋아하는 숫자 하나 적어 내라고 했습니다.
@@ -28,14 +27,10 @@ package inflearn.test;
 import java.io.*;
 import java.util.*;
 
-public class C01_48_01 {
+public class C01_48_re {
 	public String solution(int n, int[] arr) {
 		String ans = "U";
-		Arrays.sort(arr); //오름차순 정렬
-		//내림차순 정렬(Long, Integer, String 가능)
-		//Arrays.sort(arr,Collections.reverseOrder()); 
-		
-		//정렬을 먼저 했기 때문에 이중for문 불필요
+		Arrays.sort(arr);
 		for(int i = 0; i < n-1; i++) {
 			if(arr[i] == arr[i+1]) {
 				return "D";
@@ -45,7 +40,7 @@ public class C01_48_01 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		C01_48_01 T = new C01_48_01();
+		C01_48_re T = new C01_48_re();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine()); // 캐시크기

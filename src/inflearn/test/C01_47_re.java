@@ -33,44 +33,45 @@ LRU 알고리즘은 Least Recently Used 의 약자로
 
 package inflearn.test;
 
-//삽입정렬
+//어렵삼.. 이해필요
+/*
+ hit : 해야할 작업이 현재 캐시에 있는 상태
+ miss : 해야할 작업이 현재 캐시에 없는 상태
+ */
 
 import java.io.*;
 import java.util.*;
 
-public class C01_47_01 {
+public class C01_47_re {
 	public int[] solution(int s, int n, int[] arr) {
 		int[] ans = new int[s];
-
-		for (int i : arr) { // arr값 돌아가면서 miss/hit 파악
-			int idx = -1; // 인덱스 번호 : 위치 (hit = 인덱스넘버 저장 / miss = -1)
+		
+		for(int work : arr) {
+			int idx = -1; //hit : 해당 인덱스 넣기, miss : -1
 			
-			for (int j = 0; j < s; j++) { // 맨처음부터 끝까지 hit/miss체크
-				if (i == arr[j]) { // hit라면
-					idx = j; // 해당 인덱스 저장 없으면 -1유지
+			for(int j = 0; j < arr.length; j++) {
+				if(work == arr[j]) { //메모리 내 작업있다면,
+					idx = j; //idx에 그 인덱스 번호 추가
 				}
 			}
 			
-			if (idx == -1) { // miss : 없는 작업 처리 idx == -1
-				for (int k = s - 1; k >= 1; k--) { // 맨 끝부터 1인덱스 까지
-					ans[k] = ans[k - 1]; //뒷값에 앞값 복사
+			if(idx == -1) { //메모리 내 작업 없다면
+				for(int k = s-1; k >= 1; k--) {
+					ans[k] = ans[k-1]; //k자리에 k-1값 넣기 = 한 칸씩 밀기
 				}
-				//ans[0] = i; //맨 앞에 작업 할당
-			} 
-			else { //hit : 이미 있는 작업 처리 idx > -1
-				for (int l = idx; l >= 1; l--) { //hit는 hit위치부터 1까지
-					ans[l] = ans[l-1]; //뒷값에 앞값 복사
-				}
-				//ans[0] = i; //맨 앞에 작업 할당
 			}
-			ans[0] = i; //무조건 들어가니까 if~elseif 뒤에 삽입
+			else {//메모리내 작업 있다면
+				for(int l = idx; l >= 1; l++) { //해당 작업 위치 인덱스 번호~1까지
+					ans[l] = ans[l-1];  //l자리에 l-1값 넣기 = 인덱스 위치부터 1까지 한 칸씩 밀기
+				}
+			}
+			ans[0] = work; //어차피 지정된 work는 무조건 맨 처음에 들어가야 하므로 맨 마지막에 ans[0] = work;
 		}
-
 		return ans;
 	}
 
 	public static void main(String[] args) throws IOException {
-		C01_47_01 T = new C01_47_01();
+		C01_47_re T = new C01_47_re();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
